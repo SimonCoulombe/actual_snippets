@@ -1,0 +1,5 @@
+add this line to .Renviron:
+BINPREF = "C:/Rtools40/mingw64/bin/"
+
+this one might be required as well:
+PATH="C:/Rtools40/usr/bin;${PATH}"
