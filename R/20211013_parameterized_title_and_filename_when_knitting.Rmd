@@ -1,0 +1,42 @@
+---
+params: 
+  coverage_name:
+    input: text
+    label: model name
+    value: 'my_coverage_name'
+  model_name:
+    input: text
+    label: model name
+    value: 'my_model_name'
+  sub_title:
+    input: text
+    label: Sub Title
+    value: 'my_Sub_Title_and_File_Name'
+title    : "Parameterized_Title_and_output_file"
+subtitle : "`r paste0(params$model_name, params$sub_title)`"
+output:
+  html_document:
+    
+knit: (
+  function(inputFile, encoding) { 
+    pCoverageName <- 'Comprehensive'  
+  
+    pModelName <- '1'  
+    
+    pSubTitle <- 'This Works!'  
+    
+
+    rmarkdown::render( 
+      input       = inputFile, 
+      encoding    = encoding, 
+      params      = list(sub_title = pSubTitle, model_name = pModelName, coverage_name = pCoverageName),      
+      output_file = paste0("demo3_", pCoverageName, pModelName)) })
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. ....
