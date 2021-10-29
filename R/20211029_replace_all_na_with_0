@@ -1,0 +1,1 @@
+mutate(across(.cols = everything(), ~replace_na(.x, 0)))
