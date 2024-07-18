@@ -4,7 +4,7 @@ extract <- function(text) {
   split <- strsplit(text, ",", fixed = FALSE)[[1]]
   as.numeric(split)
 }
-my_fun <- function(df, color_var, breaks){
+my_fun <- function(df, color_var, breaks = ""){
 
   breaks_nums <- extract(breaks)
 
@@ -15,7 +15,7 @@ my_fun <- function(df, color_var, breaks){
     prepped_df <- df %>%
       mutate(across(all_of(color_var),
                     ~ cut(.x,
-                          breaks = breaks_nums,
+                          breaks = !!breaks_nums,
                           right = FALSE,
                           include.lowest = TRUE
                     )
@@ -29,5 +29,5 @@ my_fun <- function(df, color_var, breaks){
   return(prepped_df)
 }
 
-my_fun(mtcars, "mpg", "0,15, 25, 50, Inf") %>% count(mpg)
-
+my_fun(mtcars, "mpg", "0,10,15,30,Inf") %>% count(mpg)
+my_fun(mtcars_sql, "mpg", "0,10,15,30,Inf") %>% count(mpg)
